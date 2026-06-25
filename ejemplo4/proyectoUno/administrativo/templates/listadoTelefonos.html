@@ -25,7 +25,7 @@ Listado de Números Telefónicos
         <td>{{ t.telefono }}</td>
         <td>{{ t.tipo }}</td>
         <td>{{ t.obtener_operador }}</td>
-        <td>{{ t.estudiante }}</td>
+        <td>{{ t.estudiante.nombre }} {{ t.estudiante.apellido }}</td>
 
         <td>
             <a href="{% url 'editar_numero_telefonico' t.id %}">
