@@ -81,6 +81,6 @@ class NumeroTelefonicoEstudianteForm(ModelForm):
 
         if not (telefono.startswith("099") or telefono.startswith("098")):
             raise forms.ValidationError(
-            "Solo se permiten números que inicien con 099 (Claro) o 098 (Movistar)."
+            "Solo se permiten numeros que inicien con 099 (Claro) o 098 (Movistar)"
         )
         return telefono
