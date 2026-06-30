@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 from django import forms
 
-from administrativo.models import Estudiante, NumeroTelefonico
+from administrativo.models import Contacto, Estudiante, NumeroTelefonico
 
 
 class EstudianteForm(ModelForm):
@@ -69,3 +69,22 @@ class NumeroTelefonicoEstudianteForm(ModelForm):
     class Meta:
         model = NumeroTelefonico
         fields = ["telefono", "tipo", "estudiante"]
+
+
+class ContactoForm(ModelForm):
+    class Meta:
+        model = Contacto
+        fields = ["username", "correo", "mensaje"]
+        labels = {
+            "username": _("Ingrese su nombre por favor"),
+            "correo": _("Ingrese su correo por favor"),
+            "mensaje": _("Ingrese su mensaje por favor"),
+        }
+
+    def clean_mensaje(self):
+        mensaje = self.cleaned_data["mensaje"]
+
+        if len(mensaje) < 25:
+            raise forms.ValidationError("El mensaje debe tener al menos 25 caracteres.")
+
+        return mensaje
